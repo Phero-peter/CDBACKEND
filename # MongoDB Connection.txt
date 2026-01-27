@@ -1,0 +1,15 @@
+# MongoDB Connection
+MONGODB_URI=mongodb://localhost:27017/car-sales
+
+# NextAuth Configuration
+NEXTAUTH_URL=http://localhost:3000
+NEXTAUTH_SECRET=06a0ccaae982f7bc84bd8d3212ec421ac68175288b4115012077000b32e8fbd7
+
+# Google OAuth (Tùy chọn)
+GOOGLE_CLIENT_ID=
+GOOGLE_CLIENT_SECRET=
+
+# Cloudinary (Tùy chọn)
+CLOUDINARY_CLOUD_NAME=
+CLOUDINARY_API_KEY=
+CLOUDINARY_API_SECRET=

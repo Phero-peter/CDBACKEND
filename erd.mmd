@@ -1,0 +1,77 @@
+erDiagram
+  USER ||--o{ CAR : sells
+  USER ||--o{ CART : has
+  USER ||--o{ ORDER : places
+  CAR  ||--o{ CART_ITEM : in
+  CAR  ||--o{ ORDER_ITEM : in
+  CATEGORY ||--o{ CATEGORY : parent
+
+  USER {
+    string name
+    string email
+    string password
+    string image
+    string phone
+    string address
+    string role
+    string resetPasswordToken
+    date   resetPasswordExpiry
+  }
+
+  CAR {
+    string slug
+    string brand
+    string model
+    int year
+    int mileage
+    number price
+    string fuelType
+    string transmission
+    string color
+    string condition
+    string description
+    string[] images
+    string status
+    bool featured
+    int views
+  }
+
+  CART {
+    ObjectId user
+    number totalAmount
+  }
+
+  CART_ITEM {
+    ObjectId car
+    int quantity
+    number price
+  }
+
+  ORDER {
+    string orderNumber
+    ObjectId user
+    number totalAmount
+    string status
+    string paymentStatus
+    string paymentMethod
+  }
+
+  ORDER_ITEM {
+    ObjectId car
+    int quantity
+    number price
+    string carSnapshot_brand
+    string carSnapshot_model
+    int carSnapshot_year
+    string carSnapshot_image
+  }
+
+  CATEGORY {
+    string name
+    string slug
+    string description
+    string image
+    ObjectId parent
+    bool isActive
+    int order
+  }
