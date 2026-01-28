@@ -1,7 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  reactStrictMode: true,
+
   images: {
-    domains: ['res.cloudinary.com', 'images.unsplash.com'],
+    // Cho phép load ảnh từ Cloudinary, Unsplash và các domain khác
+    domains: [
+      'res.cloudinary.com',
+      'images.unsplash.com',
+    ],
     remotePatterns: [
       {
         protocol: 'https',
@@ -15,17 +21,11 @@ const nextConfig = {
         protocol: 'https',
         hostname: '**',
       },
-      {
-        protocol: 'http',
-        hostname: '**',
-      },
     ],
-    unoptimized: false,
+    unoptimized: false, // để true chỉ khi export static
   },
-  experimental: {
-    serverActions: true,
-  },
+
+  // Không cần experimental.serverActions (Next 14 đã bật sẵn)
 }
 
 module.exports = nextConfig
-
