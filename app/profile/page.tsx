@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useSession } from 'next-auth/react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Image from 'next/image';
@@ -9,7 +9,7 @@ import { User, Mail, Phone, MapPin, Camera, Save, Package, Heart, Settings, LogO
 import { signOut } from 'next-auth/react';
 import toast from 'react-hot-toast';
 
-export default function ProfilePage() {
+function ProfileContent() {
   const { data: session, status, update } = useSession();
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -487,5 +487,13 @@ export default function ProfilePage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function ProfilePage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Đang tải...</div>}>
+      <ProfileContent />
+    </Suspense>
   );
 }

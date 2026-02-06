@@ -1,6 +1,8 @@
 import mongoose, { Schema, Document, Model } from 'mongoose';
 
+// @ts-expect-error - Mongoose Document type compatibility
 export interface ICar extends Document {
+  _id: mongoose.Types.ObjectId;
   slug: string;
   brand: string;
   model: string;

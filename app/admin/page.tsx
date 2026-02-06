@@ -900,7 +900,7 @@ export default function AdminPage() {
                                 <Edit className="w-4 h-4" />
                               </button>
                               <button
-                                onClick={() => handleDeleteCar(car._id)}
+                                onClick={() => handleDeleteCar(String(car._id))}
                                 className="p-2 text-red-600 hover:bg-red-50 rounded"
                               >
                                 <Trash2 className="w-4 h-4" />
@@ -1035,7 +1035,7 @@ export default function AdminPage() {
                               <Edit className="w-4 h-4" />
                             </button>
                             <button
-                              onClick={() => handleDeleteUser(user._id)}
+                              onClick={() => handleDeleteUser(String(user._id))}
                               className="p-2 text-red-600 hover:bg-red-50 rounded"
                             >
                               <Trash2 className="w-4 h-4" />
@@ -1167,7 +1167,7 @@ export default function AdminPage() {
                               <Eye className="w-4 h-4" />
                             </button>
                             <button
-                              onClick={() => handleDeleteOrder(order._id)}
+                              onClick={() => handleDeleteOrder(String(order._id))}
                               className="p-2 text-red-600 hover:bg-red-50 rounded"
                             >
                               <Trash2 className="w-4 h-4" />

@@ -16,7 +16,7 @@ export function AdminCarsList({ cars: initialCars }: AdminCarsListProps) {
   const [cars, setCars] = useState<ICar[]>(initialCars);
 
   const handleCarDeleted = (deletedCarId: string) => {
-    setCars(currentCars => currentCars.filter(car => car._id !== deletedCarId));
+    setCars(currentCars => currentCars.filter(car => String(car._id) !== deletedCarId));
   };
 
   if (cars.length === 0) {
@@ -39,7 +39,7 @@ export function AdminCarsList({ cars: initialCars }: AdminCarsListProps) {
         </thead>
         <tbody className="bg-white divide-y divide-gray-200">
           {cars.map((car) => (
-            <tr key={car._id}>
+            <tr key={String(car._id)}>
               <td className="px-6 py-4 whitespace-nowrap">
                 <div className="flex-shrink-0 h-16 w-24 relative">
                     <Image
@@ -79,7 +79,7 @@ export function AdminCarsList({ cars: initialCars }: AdminCarsListProps) {
                     <Link href={`/admin/cars/edit/${car._id}`} title="Edit" className="text-indigo-600 hover:text-indigo-900">
                         <Pencil size={18} />
                     </Link>
-                    <DeleteCarButton carId={car._id as string} onCarDeleted={handleCarDeleted} />
+                    <DeleteCarButton carId={String(car._id)} onCarDeleted={handleCarDeleted} />
                 </div>
               </td>
             </tr>

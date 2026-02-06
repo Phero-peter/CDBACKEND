@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import CarsList from '@/components/cars/CarsList';
 import CategoryFilter from '@/components/cars/CategoryFilter';
 
@@ -14,7 +15,9 @@ export default function CarsPage({
   return (
     <div className="bg-slate-50 min-h-screen pt-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <CategoryFilter />
+        <Suspense fallback={<div className="mb-8">Đang tải bộ lọc...</div>}>
+          <CategoryFilter />
+        </Suspense>
         <CarsList searchParams={searchParams} />
       </div>
     </div>
