@@ -110,9 +110,14 @@ Sau khi deploy xong:
    - Kiểm tra tất cả biến môi trường đã được thêm trên Vercel
    - Đảm bảo không có typo trong tên biến
 
-3. **Lỗi MongoDB Connection:**
-   - Kiểm tra `MONGODB_URI` đúng format
-   - Đảm bảo MongoDB Atlas cho phép kết nối từ mọi IP (0.0.0.0/0)
+3. **Lỗi MongoDB Connection (TopologyDescription type: 'Unknown', localhost:27017):**
+   - **Nguyên nhân:** Ứng dụng không kết nối được tới MongoDB.
+   - **Chạy local:** Nếu dùng `mongodb://localhost:27017/...`:
+     - Cài và **khởi động MongoDB** trên máy (ví dụ: chạy `mongod` hoặc start service MongoDB).
+     - Hoặc chuyển sang **MongoDB Atlas** (miễn phí): tạo cluster → lấy connection string → gán vào `MONGODB_URI` trong `.env.local`.
+   - **Chạy trên Vercel:** Không dùng `localhost`. Bắt buộc dùng **MongoDB Atlas** (hoặc MongoDB host có thể truy cập từ internet), thêm `MONGODB_URI` vào Vercel → Settings → Environment Variables, và trên Atlas mở Network Access → Add IP Address → Allow access from anywhere (0.0.0.0/0).
+   - Kiểm tra `MONGODB_URI` đúng format (ví dụ: `mongodb+srv://user:pass@cluster.xxxxx.mongodb.net/dbname?retryWrites=true&w=majority`).
+   - Đảm bảo MongoDB Atlas cho phép kết nối từ mọi IP (0.0.0.0/0) nếu deploy Vercel.
 
 4. **Lỗi NextAuth:**
    - Kiểm tra `NEXTAUTH_URL` đúng với domain Vercel

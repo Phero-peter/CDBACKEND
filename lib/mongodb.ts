@@ -38,7 +38,13 @@ async function connectDB() {
     cached.conn = await cached.promise;
   } catch (e) {
     cached.promise = null;
-    throw e;
+    const uri = process.env.MONGODB_URI || '';
+    const isLocal = /localhost|127\.0\.0\.1|:27017/.test(uri);
+    const hint = isLocal
+      ? ' Kiểm tra: (1) MongoDB đã chạy chưa? (2) Hoặc dùng MongoDB Atlas và cập nhật MONGODB_URI trong .env.local'
+      : ' Kiểm tra MONGODB_URI trên Vercel (Settings → Environment Variables) và IP whitelist trên MongoDB Atlas.';
+    const err = e instanceof Error ? e : new Error(String(e));
+    throw new Error(`Không kết nối được MongoDB.${hint} Chi tiết: ${err.message}`, { cause: e });
   }
 
   return cached.conn;
